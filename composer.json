@@ -20,5 +20,14 @@
             "email": "kiranjrkk@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Fort\\" : "Fort/src", 
+            "App\\" : "src/",
+            "App\\Services\\" : "services/",         
+            "App\\Config\\" : "conf/",
+            "App\\Entity\\" : "entity/"
+        }
+    },
     "minimum-stability": "dev"
 }
