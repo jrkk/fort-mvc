@@ -1,0 +1,24 @@
+{
+    "name": "jrkk/fort-mvc",
+    "description": "MVC web framework with simple foot prints.",
+    "type": "project",
+    "require": {
+        "psr/simple-cache": "^1.0",
+        "psr/log": "^1.0@dev",
+        "psr/http-message": "^1.0@dev",
+        "psr/container": "^1.0@dev",
+        "psr/cache": "^1.0@dev",
+        "psr/link": "^1.0@dev",
+        "firebase/php-jwt": "dev-master",
+        "guzzlehttp/guzzle": "^6.3@dev",
+        "lcobucci/jwt": "3.3.x-dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jrkk",
+            "email": "kiranjrkk@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
