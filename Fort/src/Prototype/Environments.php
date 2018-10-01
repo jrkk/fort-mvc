@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Config\Enums;
+namespace Fort\Prototype;
 
 class Environments {
     const PROD = 'Production';

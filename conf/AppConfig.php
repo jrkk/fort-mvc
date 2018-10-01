@@ -2,9 +2,9 @@
 
 namespace App\Config;
 
-use App\Config\Enums\Protocols;
-use App\Config\Enums\Environments as ENV;
-use App\Config\Enums\HttpMethods as RM;
+use Fort\Prototype\Protocols;
+use Fort\Prototype\Environments as ENV;
+use Fort\Prototype\HttpMethods as RM;
 
 interface AppConfig {
     const ENVIORNMENT = ENV::DEV;

@@ -2,7 +2,7 @@
 
 namespace App\Config;
 
-use App\Entity\Route;
+use Fort\Entity\Route;
 
 trait Routes {
     function __construct() {

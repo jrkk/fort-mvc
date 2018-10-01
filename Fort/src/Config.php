@@ -2,7 +2,7 @@
 
 namespace Fort;
 
-use App\Entity\BaseConfig;
+use Fort\Entity\BaseConfig;
 use App\Config\AppConfig;
 
 class Config extends BaseConfig implements AppConfig {
