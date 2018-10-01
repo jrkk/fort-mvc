@@ -59,6 +59,14 @@ class Route {
         return $this->class;
     }
 
+    public function getMethod() {
+        return rtrim($this->method, 'Action').'Action';
+    }
+
+    public function getParams($vars)  {
+        return array_merge($this->params, $vars);
+    }
+
     public function getMatchExpression() {
         $this->match = "{$this->match}";
         $expression = str_replace([
@@ -66,7 +74,7 @@ class Route {
             ],[
             ""
             ],$this->match);
-        $expression = addcslashes($expression,'/');
+        //$expression = addcslashes($expression,'/');
         return $expression;
     }
     

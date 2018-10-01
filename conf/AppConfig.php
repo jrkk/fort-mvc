@@ -6,6 +6,7 @@ use Fort\Prototype\Protocols;
 use Fort\Prototype\Environments as ENV;
 use Fort\Prototype\HttpMethods as RM;
 
+// configuration that used in bootstrap the application.
 interface AppConfig {
     const ENVIORNMENT = ENV::DEV;
     const DOMAIN = 'www.abhibus.com';
@@ -13,4 +14,5 @@ interface AppConfig {
     const HTTPVERSION = '1.0';
     const DELIMITER = '/';
     const ALLOWEDMETHODS = [RM::GET, RM::POST];
+    const APPDIR = '/fort-mvc/web/';
 }

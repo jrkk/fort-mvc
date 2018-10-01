@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /secure/web/
+  RewriteBase /fort-mvc/web/
   RewriteCond $1 !^(index\.php|admin)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
