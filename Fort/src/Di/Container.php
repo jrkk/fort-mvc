@@ -7,7 +7,7 @@ use Psr\Container\ContainerInterface;
 use Fort\Exception\NotFoundException;
 use Fort\Exception\ContainerException;
 
-class Container extends ContainerInterface  {
+class Container implements ContainerInterface  {
 
     public function get($id) {
         if(!is_string($id) || !isset($this->{$id})) {

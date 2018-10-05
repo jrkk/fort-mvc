@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Config\Env\Develop;
+namespace App\Config;
 
 
 class Config  {
     use \Fort\Factory\Enum;
-    
 }

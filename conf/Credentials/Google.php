@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Config\Env\Develop;
+namespace App\Config\Credentials;
 
-trait FacebookConfig {
+trait GoogleConfig {
     protected $api_key = '';
     protected $token = '';
     protected $serviceAccount = [];
-} 
+}

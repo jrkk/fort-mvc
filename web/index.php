@@ -1,9 +1,14 @@
 <?php
+
 ini_set('display_errors','On');
 error_reporting(E_ALL);
-header('Content-Type: text/plain');
+
+header('Content-Type: text/html');
 
 require_once "../vendor/autoload.php";
-
-$app = new Fort\Bootstrap();
-$app->start();
+try {
+    $app = new Fort\Bootstrap();
+    $app->start();
+} catch ( Exception $e ) {
+    var_export($e);
+}

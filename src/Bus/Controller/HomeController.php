@@ -8,6 +8,6 @@ class HomeController extends BaseController {
         parent::__construct();
     }
     public function indexAction() {
-        
+        echo __CLASS__.'::'.__FUNCTION__;
     }
 }
