@@ -3,7 +3,7 @@
 ini_set('display_errors','On');
 error_reporting(E_ALL);
 
-header('Content-Type: text/html');
+header('Content-Type: text/plain');
 
 require_once "../vendor/autoload.php";
 try {

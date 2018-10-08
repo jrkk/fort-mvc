@@ -2,8 +2,21 @@
 
 namespace App\Config;
 
+use Fort\Prototype\Environments as ENV;
+
 trait Autoload {
-    protected $DEVELOPE = [ 'enable' => true ];
-    protected $PRODUCTION = [ 'enable' => false ];
-    protected $STAGING = [ 'enable' => false ];
+    protected static $ENVS = [ 
+        ENV::DEV => 'DEVELOPE',
+        ENV::STAGE => 'STAGING',
+        ENV::PROD => 'PRODUCTION'
+    ];
+    protected static $DEVELOPE = [ 
+        
+    ];
+    protected static $PRODUCTION = [  
+
+    ];
+    protected static $STAGING = [  
+
+    ];
 }

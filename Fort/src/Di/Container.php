@@ -22,5 +22,13 @@ class Container implements ContainerInterface  {
         }
         return isset($this->{$id}) ? true : false ;
     }
+
+    public function getAll() {
+        return (array)$this;
+    }
+
+    public function isEmpty() {
+        var_export(__FUNCTION__);
+    }
     
 }

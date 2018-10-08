@@ -6,34 +6,26 @@ use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+use Fort\Di\Container;
+
 class Request implements ServerRequestInterface {
-    
-    /**
-     * Retrieves the HTTP protocol version as a string.
-     *
-     * The string MUST contain only the HTTP version number (e.g., "1.1", "1.0").
-     *
-     * @return string HTTP protocol version.
-     */
-    public function getProtocolVersion() {
-        return $_SERVER['SERVER_PROTOCOL'];
+
+    protected $httpVersion = "";
+    protected $header = null;
+
+    function __construct()
+    {
+        $this->header = new Container();
     }
 
-    /**
-     * Return an instance with the specified HTTP protocol version.
-     *
-     * The version string MUST contain only the HTTP version number (e.g.,
-     * "1.1", "1.0").
-     *
-     * This method MUST be implemented in such a way as to retain the
-     * immutability of the message, and MUST return an instance that has the
-     * new protocol version.
-     *
-     * @param string $version HTTP protocol version
-     * @return static
-     */
+    public function getProtocolVersion() {
+        if($this->httpVersion == '')
+            $this->withProtocolVersion($_SERVER['SERVER_PROTOCOL']);
+        return $this->httpVersion;
+    }
+
     public function withProtocolVersion($version) {
-        $this->setProtocolVersion($version);
+        $this->httpVersion = $version;
         return $this;
     }
 
@@ -63,7 +55,9 @@ class Request implements ServerRequestInterface {
      *     for that header.
      */
     public function getHeaders() {
-
+        $header = getallheaders();
+        foreach($header as $key => $value ) {
+        }
     }
 
     /**

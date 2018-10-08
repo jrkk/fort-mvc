@@ -2,33 +2,28 @@
 
 namespace Fort\Mvc;
 
-use Fort\Di\Container;
+use Fort\Config;
+//use App\Config\Config;
 
 class Controller {
     use \App\Config\Autoload;
-    private $container = null;
-
+    private $autoloads = [
+        'uri' => "\\Fort\Uri",
+        'request' => "\\Fort\\Request",
+        'response' => "\\Fort\\Response"
+    ];
     function __construct()
     {
-        $this->container = new Container();
-        var_export($this->$DEVELOP);
+        $configuration = self::$ENVS[config::ENVIORNMENT];
+        $this->autoloads = array_merge($this->autoloads, self::${$configuration});
+        $this->__autoload();
     }
-
-    function __invoke($name, $arguments)
-    {
-         var_export($name);
-         var_export($arguments);
-    }
-
-    function __call($name, $arguments)
-    {
-         var_export($name);
-         var_export($arguments);
-    }
-
-
     function __autoload() {
-
+        foreach($this->autoloads as $index => $value ) {
+            if(!isset($this->$index)) {
+                $this->$index = new $value();
+            }
+        }
     }
 
 }
