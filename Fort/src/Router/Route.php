@@ -1,6 +1,6 @@
 <?php
 
-namespace Fort\Entity;
+namespace Fort\Router;
 
 use Fort\Exception\RouterException;
 

@@ -11,7 +11,8 @@
         "psr/link": "^1.0@dev",
         "firebase/php-jwt": "dev-master",
         "guzzlehttp/guzzle": "^6.3@dev",
-        "lcobucci/jwt": "3.3.x-dev"
+        "lcobucci/jwt": "3.3.x-dev",
+        "php-di/php-di": "5.4.x-dev"
     },
     "license": "MIT",
     "authors": [

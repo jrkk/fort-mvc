@@ -2,6 +2,7 @@
 
 namespace Fort;
 
+use Fort\Router\Router;
 use Fort\Helper\App;
 
 class Bootstrap {

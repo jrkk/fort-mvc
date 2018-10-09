@@ -1,7 +1,9 @@
 <?php
 
-namespace Fort;
+namespace Fort\Router;
 
+use Fort\Config;
+use Fort\Uri;
 use Fort\Exception\ControllerNotFoundException;
 
 class Router {
@@ -20,7 +22,7 @@ class Router {
             $uri = new Uri();
             $path = $uri->getPath();   
             $path = str_replace(Config::APPDIR, "", $path);
-            if($path === '' ) $path = 'index';
+            if($path === '' ) $path = 'home';
         }
         foreach($this->matches as $pattern => $match ) {
 

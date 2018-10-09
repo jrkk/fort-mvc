@@ -2,11 +2,11 @@
 
 namespace App\Config;
 
-use Fort\Entity\Route;
+use Fort\Router\Route;
 
 trait Routes {
     function appRoutes() {
-        self::setRoute('index', 'bus/home', 
+        self::setRoute('index', 'home', 
             new Route(
                 '\App\Bus\Controller\HomeController',
                 'index'
