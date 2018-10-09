@@ -50,7 +50,10 @@ class FileLogger extends Log implements Driver {
     public function handler() {
         $filepath = "/var/www/html/fort-mvc/storage/logs/example.txt";
         $this->file = new FileObject($filepath, FileModes::CW);
-        if($this->file instanceof FileObject ) {  return true; }
+        if($this->file instanceof FileObject ) {  
+            chmod($filepath, 0777);  
+            return true; 
+        }
     }
     public function push() {
         if($this->handler()) {
