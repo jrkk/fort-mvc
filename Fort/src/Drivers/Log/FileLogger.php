@@ -42,39 +42,54 @@ use Fort\Log\Driver;
 
 use Fort\Files\FileObject;
 use Fort\Files\FileModes;
+use Fort\Exception\FileNotWritableException;
 
 class FileLogger extends Log implements Driver {
     protected $file;
-    private $handler = false;
-    
-    protected $log = '.log';
+
+    protected $ext = '.log';
     protected $path = Config::BASEPATH.'storage'. Config::DELIMITER .'logs';
     protected $filePrefix = 'log-';
+    protected $permission = 0755;
+    protected $stamp = 'Y-m-d-h-i';
+
+    private $name = '';
+    protected $delimiter = "\n";
 
     function __construct() {
        parent::__construct();
     }
     public function handler() {
-        $filepath = "/var/www/html/fort-mvc/storage/logs/example.txt";
+        if($this->name === '') {
+            $dt = new \DateTimeImmutable('now');
+            $this->name = $dt->format($this->stamp);
+            unset($dt);
+        }
+        $filepath = $this->getFilePath();
         $this->file = new FileObject($filepath, FileModes::CW);
         if($this->file instanceof FileObject ) {  
-            chmod($filepath, 0777);  
+            chmod($filepath, $this->permission);  
             return true; 
         }
     }
-    public function push() {
+    public function push($name = '') {  
+        $this->name = $name;
         if($this->handler()) {
+            if(!$this->file->isWritable())
+                throw new FileNotWritableException('File not opened with write permissions');
             foreach( $this->messages as $index => $message ){
-                if($this->file->write($message)) {
-                    $this->messages = [];        
-                }
+                $message = "{$message}{$this->delimiter}";
+                $this->file->fwrite($message, strlen($message));
             }
+            $this->messages = []; 
         }
     }
-    private function getFilePath($logName) {
+    private function getFilePath() {
         // generate the file path
-        $filename = "{$this->filePrefix}{$logName}{$this->ext}";
-        $filepath = $filepath.Confifg::DELIMITER.$filename;
+        $filename = "{$this->filePrefix}{$this->name}{$this->ext}";
+        $filepath = $this->path.Config::DELIMITER.$filename;
+        
+        return $filepath;
         
     }
 }

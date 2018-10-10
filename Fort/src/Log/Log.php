@@ -61,8 +61,6 @@ class Log extends AbstractLogger implements LoggerInterface, Driver {
             $this->interpolate($message, $context);
         }
         $this->messages[] = $stamp."[".$level."]:".$message;
-        var_export(get_class());
-        var_export(func_get_args());
         return $this;
     }
     private function interpolate(&$message , $context = []) 
