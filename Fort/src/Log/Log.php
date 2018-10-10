@@ -1,5 +1,4 @@
 <?php
-
 namespace Fort\Log;
 
 /**
@@ -41,11 +40,11 @@ use Psr\Log\AbstractLogger;
 
 class Log extends AbstractLogger implements LoggerInterface, Driver {
     use \App\Config\Logger;
+    use \Fort\Helper\PropertiesBinder;
     protected $messages = [];
     function __construct()
     {
-        echo "Logger class intiated....";   
-        $this->stamp = date('Y-m-d-H-i');
+        $this->bindConfiguration();
     }
     public function log($level, $message, $context = []) 
     {

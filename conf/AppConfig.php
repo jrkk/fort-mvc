@@ -9,10 +9,11 @@ use Fort\Prototype\HttpMethods as RM;
 // configuration that used in bootstrap the application.
 interface AppConfig {
     const ENVIORNMENT = ENV::DEV;
-    const DOMAIN = 'www.abhibus.com';
+    const DOMAIN = 'www.fortphp.com';
     const PROTOCOL = Protocols::HTTP;
     const HTTPVERSION = '1.0';
     const DELIMITER = '/';
     const ALLOWEDMETHODS = [RM::GET, RM::POST];
-    const APPDIR = '/fort-mvc/web/';
+    const APPDIR = "/";
+    const BASEPATH = "D:\\php-apps\\Fort\\fort-mvc\\";
 }

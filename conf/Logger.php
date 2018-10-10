@@ -7,7 +7,7 @@ use Fort\Config;
 trait Logger {
     protected $config = [
         'ext' => '.log',
-        'path' => Config::APPDIR.'storage/logs',
+        'path' => Config::BASEPATH.'storage'. Config::DELIMITER .'logs',
         'filePrefix' => 'log-'
     ];
     protected $allowedModes = ['debug','info'];
