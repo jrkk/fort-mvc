@@ -31,4 +31,45 @@ interface DiContainerInterface {
      * @return object $instance Returns the same instance
      */
     public function injectOn($instance);
+
+    /**
+     * Call the given function using the given parameters.
+     *
+     * Missing parameters will be resolved from the container.
+     *
+     * @param callable $callable   Function to call.
+     * @param array    $parameters Parameters to use. Can be indexed by the parameter names
+     *                             or not indexed (same order as the parameters).
+     *                             The array can also contain DI definitions, e.g. DI\get().
+     *
+     * @return mixed Result of the function.
+     */
+    public function call($callable, array $parameters = []);
+
+    /**
+     * Define an object or a value in the container.
+     *
+     * @param string $name Entry name
+     * @param mixed|DefinitionHelper $value Value, use definition helpers to define objects
+     */
+    public function set(string $name, $value);
+
+    /**
+     * Get defined container entries.
+     *
+     * @return string[]
+     */
+    public function getKnownEntryNames();
+
+    /**
+     * Resolves a definition.
+     *
+     * Checks for circular dependencies while resolving the definition.
+     *
+     * @throws DependencyException Error while resolving the entry.
+     * @return mixed
+     */
+    private function resolveDefinition(Definition $definition, array $parameters = []);
+
+    
 }
