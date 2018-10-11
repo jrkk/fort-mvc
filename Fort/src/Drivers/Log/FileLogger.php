@@ -45,6 +45,10 @@ use Fort\Files\FileModes;
 use Fort\Exception\FileNotWritableException;
 
 class FileLogger extends Log implements Driver {
+
+    use \Fort\Helper\Path;
+    use \Fort\Helper\Temporial;
+
     protected $file;
 
     protected $ext = '.log';
@@ -60,11 +64,6 @@ class FileLogger extends Log implements Driver {
        parent::__construct();
     }
     public function handler() {
-        if($this->name === '') {
-            $dt = new \DateTimeImmutable('now');
-            $this->name = $dt->format($this->stamp);
-            unset($dt);
-        }
         $filepath = $this->getFilePath();
         $this->file = new FileObject($filepath, FileModes::CW);
         if($this->file instanceof FileObject ) {  
@@ -77,19 +76,22 @@ class FileLogger extends Log implements Driver {
         if($this->handler()) {
             if(!$this->file->isWritable())
                 throw new FileNotWritableException('File not opened with write permissions');
+            $totalBytes = 0;
             foreach( $this->messages as $index => $message ){
-                $message = "{$message}{$this->delimiter}";
-                $this->file->fwrite($message, strlen($message));
+                $content = '';
+                $content = "{$message}{$this->delimiter}";
+                $totalBytes += $this->file->fwrite($content, strlen($content));
             }
+            echo $totalBytes." Bytes of information written on file.";
             $this->messages = []; 
         }
     }
     private function getFilePath() {
+        $stamp = $this->getDateStamp($this->stamp,'-');
         // generate the file path
-        $filename = "{$this->filePrefix}{$this->name}{$this->ext}";
+        $filename = "{$this->filePrefix}{$this->name}-{$stamp}{$this->ext}";
         $filepath = $this->path.Config::DELIMITER.$filename;
-        
+        $this->santize_file_path($filepath);
         return $filepath;
-        
     }
 }

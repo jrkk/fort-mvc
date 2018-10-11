@@ -15,8 +15,8 @@ class Container implements \Fort\Log\LoggerInterface {
     function doLog() {
         $this->logger->debug('container intialized');
         $this->logger->debug('controller intialized');
-        $this->logger->debug('Header intialized');
-        $this->logger->push();
+        $this->logger->debug('Header intialized'.var_export($this, true));
+        $this->logger->push('container111');
     }
 
 }

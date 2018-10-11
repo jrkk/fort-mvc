@@ -8,9 +8,10 @@ trait Logger {
     protected $config = [
         'ext' => '.log',
         'path' => Config::BASEPATH.'storage'. Config::DELIMITER .'logs',
-        'filePrefix' => 'log-',
+        'filePrefix' => '',
         'permission' => 0777,
-        'stamp' => 'Y-m-d-H-i',
+        'stamp' => 'Y-m-d-H-i/3',
     ];
     protected $allowedModes = ['debug','info'];
+    
 }
