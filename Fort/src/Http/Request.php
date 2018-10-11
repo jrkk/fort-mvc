@@ -1,10 +1,12 @@
 <?php
 
-namespace Fort;
+namespace Fort\Http;
 
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UriInterface;
+use Psr\Http\Message\StreamInterface;
 
 use Fort\Di\Container;
 
@@ -190,7 +192,7 @@ class Request implements ServerRequestInterface {
      * @return static
      * @throws \InvalidArgumentException When the body is not valid.
      */
-    public function withBody($body) {
+    public function withBody(StreamInterface $body) {
 
     }
 
@@ -306,7 +308,7 @@ class Request implements ServerRequestInterface {
      * @param bool $preserveHost Preserve the original state of the Host header.
      * @return static
      */
-    public function withUri($uri, $preserveHost = false) {
+    public function withUri(UriInterface $uri, $preserveHost = false) {
 
     }
 

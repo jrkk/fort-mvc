@@ -15,5 +15,5 @@ interface AppConfig {
     const DELIMITER = '/';
     const ALLOWEDMETHODS = [RM::GET, RM::POST];
     const APPDIR = "/";
-    const BASEPATH = "D:\\php-apps\\Fort\\fort-mvc\\";
+    const BASEPATH = "C:\\Projects\\fort-mvc\\";
 }

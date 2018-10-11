@@ -3,7 +3,7 @@
 namespace Fort\Router;
 
 use Fort\Config;
-use Fort\Uri;
+use Fort\Http\Uri;
 use Fort\Exception\ControllerNotFoundException;
 
 class Router {

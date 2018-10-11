@@ -12,6 +12,6 @@ trait Logger {
         'permission' => 0777,
         'stamp' => 'Y-m-d-H-i/3',
     ];
-    protected $allowedModes = ['debug','info'];
+    protected $allowedModes = ['debug','info','emergency','alert','critical','error','warning','notice'];
     
 }

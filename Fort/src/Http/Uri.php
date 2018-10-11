@@ -1,6 +1,6 @@
 <?php
 
-namespace Fort;
+namespace Fort\Http;
 
 use Psr\Http\Message\UriInterface;
 use App\Config\AppConfig;

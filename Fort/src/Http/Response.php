@@ -1,6 +1,6 @@
 <?php
 
-namespace Fort;
+namespace Fort\Http;
 
 class Response {
     

@@ -8,9 +8,9 @@ use Fort\Config;
 class Controller {
     use \App\Config\Autoload;
     private $autoloads = [
-        'uri' => "\\Fort\Uri",
-        'request' => "\\Fort\\Request",
-        'response' => "\\Fort\\Response"
+        'uri' => "\\Fort\\Http\\Uri",
+        'request' => "\\Fort\\Http\\Request",
+        'response' => "\\Fort\\Http\\Response"
     ];
     function __construct()
     {

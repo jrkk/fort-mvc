@@ -46,7 +46,7 @@ class Log extends AbstractLogger implements LoggerInterface, Driver {
     {
         $this->bindConfiguration();
     }
-    public function log($level, $message, $context = []) 
+    public function log($level, $message, array $context = []) 
     {
         $stamp = date('Y-m-d-H-i');
         if ( !array_key_exists($level, self::levels)) {
@@ -68,6 +68,7 @@ class Log extends AbstractLogger implements LoggerInterface, Driver {
         var_export($message, $context);
     }
     public function push() {
-        var_export($this->log);
+        echo implode("\n", $this->messages);
+        $this->messages = [];
     }
 }
