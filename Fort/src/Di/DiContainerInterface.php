@@ -69,7 +69,7 @@ interface DiContainerInterface {
      * @throws DependencyException Error while resolving the entry.
      * @return mixed
      */
-    private function resolveDefinition(Definition $definition, array $parameters = []);
+    public function resolveDefinition(Definition $definition, array $parameters = []);
 
     
 }

@@ -68,7 +68,7 @@ class Log extends AbstractLogger implements LoggerInterface, Driver {
         var_export($message, $context);
     }
     public function push() {
-        echo implode("\n", $this->messages);
+        echo "\n".implode("\n", $this->messages);
         $this->messages = [];
     }
 }
