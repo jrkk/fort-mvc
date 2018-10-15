@@ -1,7 +1,9 @@
 <?php
 namespace Fort\Di;
 
-interface DiContainerInterface {
+use Fort\Di\Definition\Definition;
+
+interface InjectionInterface {
     /**
      * Build an entry of the container by its name.
      *
@@ -20,7 +22,7 @@ interface DiContainerInterface {
      * @throws NotFoundException No entry found for the given name.
      * @return mixed
      */
-    public function make($name, array $parameters = []);
+    public static function make($name, array $parameters = []);
 
      /**
      * Inject all dependencies on an existing instance.
@@ -30,7 +32,7 @@ interface DiContainerInterface {
      * @throws DependencyException Error while injecting dependencies
      * @return object $instance Returns the same instance
      */
-    public function injectOn($instance);
+    public static function inject($instance);
 
     /**
      * Call the given function using the given parameters.
@@ -44,7 +46,7 @@ interface DiContainerInterface {
      *
      * @return mixed Result of the function.
      */
-    public function call($callable, array $parameters = []);
+    public static function call($callable, array $parameters = []);
 
     /**
      * Define an object or a value in the container.
@@ -52,14 +54,14 @@ interface DiContainerInterface {
      * @param string $name Entry name
      * @param mixed|DefinitionHelper $value Value, use definition helpers to define objects
      */
-    public function set(string $name, $value);
+    public static function set(string $name, $value);
 
     /**
      * Get defined container entries.
      *
      * @return string[]
      */
-    public function getKnownEntryNames();
+    public static function getKnownEntryNames();
 
     /**
      * Resolves a definition.
@@ -69,7 +71,7 @@ interface DiContainerInterface {
      * @throws DependencyException Error while resolving the entry.
      * @return mixed
      */
-    public function resolveDefinition(Definition $definition, array $parameters = []);
+    public static function resolveDefinition(Definition $definition, array $parameters = []);
 
     
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Fort\Di;
+namespace Fort\Di\Definition;
 
 interface Definition {
     

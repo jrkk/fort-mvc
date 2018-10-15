@@ -27,7 +27,7 @@ class ObjectContainer implements ContainerInterface,LoggerInterface   {
         return isset($this->registry[$id]) ? true : false ;
     }
 
-    public function setObject($id, &$object) {
+    public function set($id, &$object) {
         if(!is_string($id) || !is_object($object) ) {
             throw new ContainerException();
         }
