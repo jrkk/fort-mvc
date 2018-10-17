@@ -15,12 +15,15 @@ class DI  {
 
     private static $objects;
 
+    private static $injection;
+
     public static function init(Log &$logger){
         self::$logger = $logger;
         self::$objects = new ObjectContainer();
         if(self::$objects instanceof ObjectContainer) {
             self::$logger->info('Objects Container has created');
         }
+        Ioc::init($logger);
     }
 
     public static function create($name, $class, array $parameters = []) {
