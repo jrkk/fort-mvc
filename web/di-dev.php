@@ -18,6 +18,7 @@ Ioc::init($log);
 DI::init($log);
 
 DI::create('router', '\Fort\Router\Router');
+DI::create('controller', '\App\Bus\Controller\HomeController');
 
 echo "\n\n-------------------------------------------------------------------------------------------- ";
 $log->push();

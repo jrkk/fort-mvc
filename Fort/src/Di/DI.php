@@ -13,30 +13,32 @@ class DI  {
     
     private static $logger;
 
-    private static $objects;
-
     private static $injection;
 
     public static function init(Log &$logger){
         self::$logger = $logger;
-        self::$objects = new ObjectContainer();
-        if(self::$objects instanceof ObjectContainer) {
-            self::$logger->info('Objects Container has created');
-        }
-        Ioc::init($logger);
+        Ioc::setLogger($logger);
+        self::$injection = new Injection($logger);
     }
 
     public static function create($name, $class, array $parameters = []) {
         self::$logger->info(__FUNCTION__.': called '.var_export(func_get_args(), true));
         try {
-            $object = self::$objects->get($name);
+            $object = Ioc::get($name);
         } catch( NotFoundException $nfe ) {
             self::$logger->info(' Un expected exception throwed :'.$nfe->getTraceAsString());
         } catch ( ContainerException $ce ) {   
             self::$logger->info(' Object not Found ( need to create ) :'.$ce->getTraceAsString());
-            $definition = Ioc::make($class, $parameters);
-            var_export($definition);
-            Ioc::resolveDefinition($definition, $parameters);
+            if(!Ioc::isBuffered($name)) {
+                $definition = self::$injection->make($class, $parameters);
+                if($definition instanceof Definition) {
+                    $definition->setName($name);
+                    Ioc::setBuffer($name, $class);
+                    self::$logger->info('Definition has reslvoved and definition ['.$definition->getName().']');
+                }
+            } else {
+                self::$logger->info('Already cached on identified');
+            }
         } catch ( Exception $e ) {
             self::$logger->info(' Un expected exception throwed :'.$nfe->getTraceAsString());
         }

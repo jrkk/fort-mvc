@@ -2,36 +2,43 @@
 
 namespace Fort\Di;
 
-use Psr\Container\ContainerInterface;
-use Fort\Log\LoggerInterface;
-
 use Fort\Exception\NotFoundException;
 use Fort\Exception\ContainerException;
 
-class ObjectContainer implements ContainerInterface,LoggerInterface   {
-    use \Fort\Log\Logger;
+class ObjectContainer implements StaticContainer  {
 
-    private $registry = [];
+    protected static $logger;
 
-    public function get($id) {
-        if(!is_string($id) || !isset($this->registry[$id])) {
+    public static function setLogger($logger) {
+        self::$logger = $logger;
+    }
+    
+    public static function get($name) {
+        if(!is_string($name) || !isset(self::${$name})) {
             throw new ContainerException();
         }
-        return $this->registry[$id];
+        return self::${$name};
     }
 
-    public function has($id) {
+    public static function has($id) {
         if(!is_string($id)) {
             throw new NotFoundException();
         }
-        return isset($this->registry[$id]) ? true : false ;
+        return isset(self::${$name}) ? true : false ;
     }
 
-    public function set($id, &$object) {
+    public static function set($id, $object) {
         if(!is_string($id) || !is_object($object) ) {
             throw new ContainerException();
         }
-        $this->registry[$id] = $object;
+        self::${$name} = $object;
+    }
+
+    public static function remove($id) {
+        if(!is_string($id) || !is_object($object) ) {
+            throw new ContainerException();
+        }
+        unset(self::${$name});
     }
 
 }

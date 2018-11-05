@@ -4,6 +4,8 @@ namespace Fort\Mvc;
 
 use Fort\Config;
 //use App\Config\Config;
+use Fort\Http\Request;
+use Fort\Http\Response;
 
 class Controller {
     use \App\Config\Autoload;
@@ -12,7 +14,7 @@ class Controller {
         'request' => "\\Fort\\Http\\Request",
         'response' => "\\Fort\\Http\\Response"
     ];
-    function __construct()
+    function __construct(Request $request, Response $response)
     {
         $configuration = self::$ENVS[config::ENVIORNMENT];
         $this->autoloads = array_merge($this->autoloads, self::${$configuration});

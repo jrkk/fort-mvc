@@ -5,6 +5,6 @@ interface Definition {
     
    public function setName($name);
 
-   public function getName($name);
+   public function getName();
 
 }

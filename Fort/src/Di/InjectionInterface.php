@@ -22,7 +22,7 @@ interface InjectionInterface {
      * @throws NotFoundException No entry found for the given name.
      * @return mixed
      */
-    public static function make($name, array $parameters = []);
+    public function make($name, array $parameters = []);
 
      /**
      * Inject all dependencies on an existing instance.
@@ -32,7 +32,7 @@ interface InjectionInterface {
      * @throws DependencyException Error while injecting dependencies
      * @return object $instance Returns the same instance
      */
-    public static function inject($instance);
+    public function inject($instance);
 
     /**
      * Call the given function using the given parameters.
@@ -46,7 +46,7 @@ interface InjectionInterface {
      *
      * @return mixed Result of the function.
      */
-    public static function call($callable, array $parameters = []);
+    public function call($callable, array $parameters = []);
 
     /**
      * Define an object or a value in the container.
@@ -54,14 +54,14 @@ interface InjectionInterface {
      * @param string $name Entry name
      * @param mixed|DefinitionHelper $value Value, use definition helpers to define objects
      */
-    public static function set(string $name, $value);
+    public function set(string $name, $value);
 
     /**
      * Get defined container entries.
      *
      * @return string[]
      */
-    public static function getKnownEntryNames();
+    public function getKnownEntryNames();
 
     /**
      * Resolves a definition.
@@ -71,7 +71,7 @@ interface InjectionInterface {
      * @throws DependencyException Error while resolving the entry.
      * @return mixed
      */
-    public static function resolveDefinition(Definition $definition, array $parameters = []);
+    public  function resolveDefinition(Definition $definition, array &$parameters);
 
     
 }

@@ -13,7 +13,7 @@ class Container implements ContainerInterface  {
         if(!is_string($id) || !isset($this->{$id})) {
             throw new ContainerException();
         }
-        return $this->{id};
+        return $this->{$id};
     }
 
     public function has($id) {
@@ -21,6 +21,13 @@ class Container implements ContainerInterface  {
             throw new NotFoundException();
         }
         return isset($this->{$id}) ? true : false ;
+    }
+
+    public function set($id, $content) {
+        if(!is_string($id)) {
+            throw new ContainerException();
+        }
+        $this->{$id} = $content;
     }
 
 }

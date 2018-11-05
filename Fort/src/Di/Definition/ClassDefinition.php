@@ -1,21 +1,43 @@
 <?php
 namespace Fort\Di\Definition;
 
+use Fort\Di\DI;
+
 class ClassDefinition implements Definition {
+
     use \Fort\Di\Helper\Definition;
 
-    protected $reflection = null ;
+    private $name = '';
+    private $className = '';
+    private $dependencies = [];
 
-    function setClass($class) {
+    function __construct($class)  {
+        $this->className = $class;
+    }
+    
+    public function constructor($parameters)  {
+        var_dump(get_object_vars($this));
         try {
-            $this->reflection = new \ReflectionClass($class);
-            return $this->reflection->getName();
-        } catch ( ReflectionException $re ) {
-            var_export($class);
-            var_export($re);
-            $this->logger->info('Throws reflection exception: reflection object not created ');
+            $constructor = new \ReflectionMethod($this->className, '__construct');
+            $arguments = $constructor->getParameters();
+            foreach($arguments as $dependency) {
+                var_export($dependency->getName());
+                var_export($dependency->getClass());
+                DI::create($dependency->getName(), $dependency->getClass());
+                if(!isset($this->dependencies[$dependency->getName()]))
+                    $this->dependencies[$dependency->getName()] = $dependency->getClass();
+                
+            }
+        } catch ( \ReflectionException $re ) {
+            if($re->getMessage() !== 'Method Fort\\Router\\Router::__construct() does not exist')
+                var_export($re);
         }
-        return false;
+    }
+
+    public function inject() {
+        $reflection = new \ReflectionClass($this->className);
+        $instance = $reflection->newInstanceArgs($this->dependencies);
+        return $instance;
     }
 
 }

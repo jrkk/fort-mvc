@@ -6,7 +6,7 @@ trait Definition {
         $this->name = $name;
         return $this;
     }
-    public function getName($name){
+    public function getName(){
         return $this->name;
     }
 }
